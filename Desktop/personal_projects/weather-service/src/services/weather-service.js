@@ -1,8 +1,12 @@
+require('dotenv').config();
+
 const fetch = require('node-fetch');
 
 async function getForecast() {
 
-  const response = await fetch('https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,minutely,current,alerts&units=imperial&appid={API Key}');
+  console.log("KEY HERE:" + process.env.WEATHER_API_KEY);
+
+  const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=38.62&lon=90.19&exclude=hourly,minutely,current,alerts&units=imperial&appid=${process.env.WEATHER_API_KEY}`);
   const body = await response.json();
 
   const result = body.daily.map(day => {
