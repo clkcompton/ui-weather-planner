@@ -15,9 +15,26 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 })
 export class HomeComponent implements OnInit {
 
+  daysOfTheWeek = [];
+
   constructor() { }
 
+  async getDailyForecast() {
+    
+    const request = await fetch("http://localhost:8080/weather");
+    const forecast = await request.json();
+    return forecast;
+  }
+
+
+
   ngOnInit() {
+
+    this.getDailyForecast().then(forecast => {
+      this.daysOfTheWeek = forecast;
+    });
+    // console.log(this.getDailyForecast());
+    
   }
 
   
