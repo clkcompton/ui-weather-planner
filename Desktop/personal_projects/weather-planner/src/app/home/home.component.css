@@ -9,16 +9,19 @@
 .activity-days {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-around;
-  height: 500px;
-  width:fit-content;
-  align-content: space-between
+  height: 400px;
+  /* width:fit-content; */
+  align-content: space-between;
+  /* flex: 1 1 0; */
+
 }
 
 .activity {
   display: flex;
   flex-direction: column;
+  /* flex-shrink: 5; */
 }
 
 .new-activity {

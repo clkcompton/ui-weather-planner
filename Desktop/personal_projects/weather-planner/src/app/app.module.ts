@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
+// import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 
 
 // import { AddActivity, AddActivityDialog } from './home/home.component';

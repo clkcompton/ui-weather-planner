@@ -6,18 +6,21 @@
   <form class="login-form">
 
     <mat-form-field class="login-full-width">
-      <input matInput placeholder="Username">
+      <input #username matInput placeholder="Username">
     </mat-form-field>
 
     <mat-form-field class="login-full-width">
-      <input type="password" matInput placeholder="Password">
+      <input #password type="password" matInput placeholder="Password">
     </mat-form-field>
 
-    <button>Login</button>
     <br>
-    <button (click)="test()">Sign Up</button>
-
+    
   </form>
 
+<button (click)='loginUser(username.value, password.value)'>Login</button>
+
+<button (click)='registerUser(username.value, password.value)'>Sign Up</button>
+
+<p>{{message}}</p>
 
 </div>
