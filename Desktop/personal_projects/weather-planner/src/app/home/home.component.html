@@ -20,7 +20,9 @@
         <mat-card-subtitle>Max: {{daysOfTheWeek[0].maxTemp}}°</mat-card-subtitle>
         <mat-card-subtitle>Min: {{daysOfTheWeek[0].minTemp}}°</mat-card-subtitle>
         <mat-card-subtitle>{{daysOfTheWeek[0].weatherDescription}}</mat-card-subtitle>
-        <img src="getImageFromCode(800)">
+        <img src="801.png">
+        <!-- <img [src]='"./"+801.png'> -->
+        <!-- <img [src]="getImageFromCode(800) | async" /> -->
       </mat-card>
       <mat-card>
         <mat-card-title>{{daysOfTheWeek[1].dayOfWeek}}</mat-card-title>
@@ -76,14 +78,15 @@
   <label>Max Temperature: <input #maxTemp type="number" name="max-temperature"/></label>
   <label>Min Temperature: <input #minTemp type="number" name="min-temperature"/></label>
   <label>Weather Type: 
-    <select #weatherType name="weather">
-      <option value="1">cloudy</option>
-      <option value="2">clear</option>
-      <option value="3">rainy</option>
+    <select #weatherDescription name="weather">
+      <option value="clouds">clouds</option>
+      <option value="clear">clear</option>
+      <option value="rain">rainy</option>
     </select>
   </label>
-  <button>Create</button>
 </form>
+
+<button (click)='addActivity(activityName.value, minTemp.value, maxTemp.value, weatherDescription.value)'>Add activity</button>
 
 <button (click)='deleteUser(username)'>Delete my account</button>
 

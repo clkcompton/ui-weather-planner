@@ -31,10 +31,10 @@ import {MatCardModule} from '@angular/material/card';
   // entryComponents: [AddActivityDialog],
 
   imports: [
-    HttpClientModule,
     MatMenuModule,
     MatInputModule,
     BrowserModule,
+    HttpClientModule,
     NoopAnimationsModule,
     AppRoutingModule,
     MatDialogModule,

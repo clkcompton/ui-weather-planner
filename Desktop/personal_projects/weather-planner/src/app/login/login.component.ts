@@ -119,7 +119,7 @@ export class LoginComponent implements OnInit {
       },
       body: JSON.stringify(registrationCreds)
     };
-    const test = await fetch("http://localhost:8080/user", settings).catch((err) => { console.error(err); });
+    const newUserData = await fetch("http://localhost:8080/user", settings).catch((err) => { console.error(err); });
 
     this.message = "Success! You are now registered."
   }
