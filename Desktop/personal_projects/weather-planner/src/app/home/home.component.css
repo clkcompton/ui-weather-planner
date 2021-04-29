@@ -1,8 +1,15 @@
+
+
 .activity-title {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-self: center;
   justify-content: center;
+  width: 950px;
+  display: grid;
+  margin-top: 30px;
+  opacity: 87%;
+  
 
 }
 
@@ -14,6 +21,7 @@
   height: 400px;
   /* width:fit-content; */
   align-content: space-between;
+  height: 300px;
   /* flex: 1 1 0; */
 
 }
@@ -21,14 +29,29 @@
 .activity {
   display: flex;
   flex-direction: column;
+  align-self: center;
+  
+  
+  
   /* flex-shrink: 5; */
 }
 
 .new-activity {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  align-self: center;
+  justify-content: center;
   height: 300px;
+  display: grid;
+  width: 177px;
+  margin-top: 30px;
+}
 
+.thumbs-image {
+  width: 100px;
+}
+
+.btn-info {
+  background: #1C9CF6;
+  margin-top: 30px;
 }

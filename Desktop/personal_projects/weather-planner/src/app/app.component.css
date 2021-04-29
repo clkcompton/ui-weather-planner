@@ -1,5 +1,16 @@
 
+/* 
+.navbar-brand {
+}  */
 
-.navbar-brand {} 
+/* .navbar-dark { */
+  
+/* } */
 
-.navbar-dark {}
+.jumbotron {
+  background-color: #E3F4FE;
+}
+
+.navbar navbar-dark bg-primary {
+  background: #1C9CF6;
+}

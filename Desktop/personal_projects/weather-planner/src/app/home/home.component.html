@@ -9,88 +9,58 @@
 </div>
 
 
-<div class="activity">
+<div class="activity" *ngFor = "let activity of allUserActivities">
     <mat-card class="activity-title">
-      <mat-card-title>Camping:</mat-card-title>
-    <!-- <mat-card-subtitle>Here are the next 7 days</mat-card-subtitle> -->
+      <mat-card-title>{{activity.activity_name}}</mat-card-title>
+      <mat-card-subtitle>Min: {{activity.min_temperature}}, Max: {{activity.max_temperature}}, {{activity.weather_description}}</mat-card-subtitle>
     </mat-card>
     <div class="activity-days">
-      <mat-card>
-        <mat-card-title>{{daysOfTheWeek[0].dayOfWeek}}</mat-card-title>
-        <mat-card-subtitle>Max: {{daysOfTheWeek[0].maxTemp}}°</mat-card-subtitle>
-        <mat-card-subtitle>Min: {{daysOfTheWeek[0].minTemp}}°</mat-card-subtitle>
-        <mat-card-subtitle>{{daysOfTheWeek[0].weatherDescription}}</mat-card-subtitle>
-        <img src="801.png">
-        <!-- <img [src]='"./"+801.png'> -->
-        <!-- <img [src]="getImageFromCode(800) | async" /> -->
-      </mat-card>
-      <mat-card>
-        <mat-card-title>{{daysOfTheWeek[1].dayOfWeek}}</mat-card-title>
-        <mat-card-subtitle>Max: {{daysOfTheWeek[1].maxTemp}}°</mat-card-subtitle>
-        <mat-card-subtitle>Min: {{daysOfTheWeek[1].minTemp}}°</mat-card-subtitle>
-        <mat-card-subtitle>{{daysOfTheWeek[1].weatherDescription}}</mat-card-subtitle>
-        <img mat-card-image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWlnJZVA8k14dEu3O1S0ZEuEvs1EI_5vr4_g&usqp=CAU">
-      </mat-card>
-      <mat-card>
-        <mat-card-title>{{daysOfTheWeek[2].dayOfWeek}}</mat-card-title>
-        <mat-card-subtitle>Max: {{daysOfTheWeek[2].maxTemp}}°</mat-card-subtitle>
-        <mat-card-subtitle>Min: {{daysOfTheWeek[2].minTemp}}°</mat-card-subtitle>
-        <mat-card-subtitle>{{daysOfTheWeek[2].weatherDescription}}</mat-card-subtitle>
-        <img mat-card-image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWlnJZVA8k14dEu3O1S0ZEuEvs1EI_5vr4_g&usqp=CAU">
-      </mat-card>
-      <mat-card>
-        <mat-card-title>{{daysOfTheWeek[3].dayOfWeek}}</mat-card-title>
-        <mat-card-subtitle>Max: {{daysOfTheWeek[3].maxTemp}}°</mat-card-subtitle>
-        <mat-card-subtitle>Min: {{daysOfTheWeek[3].minTemp}}°</mat-card-subtitle>
-        <mat-card-subtitle>{{daysOfTheWeek[3].weatherDescription}}</mat-card-subtitle>
-        <img mat-card-image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd6b1MehhVw7X1NSZE7nvTGYh8rB7Q_Wvzug&usqp=CAU">
-      </mat-card>
-      <mat-card>
-        <mat-card-title>{{daysOfTheWeek[4].dayOfWeek}}</mat-card-title>
-        <mat-card-subtitle>Max: {{daysOfTheWeek[4].maxTemp}}°</mat-card-subtitle>
-        <mat-card-subtitle>Min: {{daysOfTheWeek[4].minTemp}}°</mat-card-subtitle>
-        <mat-card-subtitle>{{daysOfTheWeek[4].weatherDescription}}</mat-card-subtitle>
-        <img mat-card-image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWlnJZVA8k14dEu3O1S0ZEuEvs1EI_5vr4_g&usqp=CAU">
-      </mat-card>
-      <mat-card>
-        <mat-card-title>{{daysOfTheWeek[5].dayOfWeek}}</mat-card-title>
-        <mat-card-subtitle>Max: {{daysOfTheWeek[5].maxTemp}}°</mat-card-subtitle>
-        <mat-card-subtitle>Min: {{daysOfTheWeek[5].minTemp}}°</mat-card-subtitle>
-        <mat-card-subtitle>{{daysOfTheWeek[5].weatherDescription}}</mat-card-subtitle>
-        <img mat-card-image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd6b1MehhVw7X1NSZE7nvTGYh8rB7Q_Wvzug&usqp=CAU">
-      </mat-card>
-      <mat-card>
-        <mat-card-title>{{daysOfTheWeek[6].dayOfWeek}}</mat-card-title>
-        <mat-card-subtitle>Max: {{daysOfTheWeek[6].maxTemp}}°</mat-card-subtitle>
-        <mat-card-subtitle>Min: {{daysOfTheWeek[6].minTemp}}°</mat-card-subtitle>
-        <mat-card-subtitle>{{daysOfTheWeek[6].weatherDescription}}</mat-card-subtitle>
-        <img mat-card-image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWlnJZVA8k14dEu3O1S0ZEuEvs1EI_5vr4_g&usqp=CAU">
+      <mat-card *ngFor = "let day of daysOfTheWeek">
+        <mat-card-title>{{day.dayOfWeek}}</mat-card-title>
+        <mat-card-subtitle>H: {{day.maxTemp}}°</mat-card-subtitle>
+        <mat-card-subtitle>L: {{day.minTemp}}°</mat-card-subtitle>
+        <mat-card-subtitle>{{day.weatherDescription}}</mat-card-subtitle>
+        <!-- <mat-card-subtitle>HERE: {{activity.activityForecast[day.dayOfWeek].isInBounds}}</mat-card-subtitle> -->
+        <mat-card-subtitle *ngIf = "activity.activityForecast[day.dayOfWeek].isInBounds === true; else falseImg">
+          <img class="thumbs-image" src="data:image/png;base64,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">
+        </mat-card-subtitle>
+        <ng-template #falseImg>
+          <img class="thumbs-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIfSMfkms1_I36BdIdChTTIIRiGoxXHKnu7w&usqp=CAU">
+       </ng-template>
+        <!-- <p>{{activity.activityForecast.isInBounds}}</p> -->
+        
+
       </mat-card>
     </div>
 </div>
   
-  
 
 <!-- form for new activity registration -->
-<form class="new-activity">
-  <!-- action="http://localhost:8080/activity" method="post" -->
-  <label>Activity Name: <input #activityName type="text" name="activity-name"/></label>
-  <label>Max Temperature: <input #maxTemp type="number" name="max-temperature"/></label>
-  <label>Min Temperature: <input #minTemp type="number" name="min-temperature"/></label>
-  <label>Weather Type: 
-    <select #weatherDescription name="weather">
-      <option value="clouds">clouds</option>
-      <option value="clear">clear</option>
-      <option value="rain">rainy</option>
-    </select>
-  </label>
-</form>
+<div class="new-activity">
+  <form>
+    <!-- action="http://localhost:8080/activity" method="post" -->
+    <label>Activity Name: <input #activityName type="text" name="activity-name"/></label>
+    <label>Max Temperature: <input #maxTemp type="number" name="max-temperature"/></label>
+    <label>Min Temperature: <input #minTemp type="number" name="min-temperature"/></label>
+    <label>Weather Type: 
+      <select #weatherDescription name="weather">
+        <option value="Clear">clear skies</option>
+        <option value="Clouds">clouds</option>
+        <option value="Rain">rainy</option>
+        <option value="Snow">snow</option>
+        <option value="Thunderstorm">thunderstorms</option>
+        <option value="Drizzle">light drizzle</option>
+        
+      </select>
+    </label>
+  </form>
+  <button (click)='addActivity(activityName.value, minTemp.value, maxTemp.value, weatherDescription.value)' class="btn btn-info">Add activity</button>
+</div>
 
-<button (click)='addActivity(activityName.value, minTemp.value, maxTemp.value, weatherDescription.value)'>Add activity</button>
 
-<button (click)='deleteUser(username)'>Delete my account</button>
+<button (click)='deleteUser(username)' class="btn btn-info">Delete my account</button>
 
 <div>
   <label>Enter new password here: <input #newPass type="text" name="new-password"/></label>
-  <button (click)='updatePassword(username, newPass.value)'>Update my password</button>
+  <button (click)='updatePassword(username, newPass.value)' class="btn btn-info">Update my password</button>
 </div>

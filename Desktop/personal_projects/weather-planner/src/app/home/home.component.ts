@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
 
   daysOfTheWeek = [];
   allUserActivities = [];
+  // comparisonBooleans = [];
   username = window.localStorage.username;
   testImage = "https://cdn3.iconfinder.com/data/icons/weather-16/256/Storm-512.png";
   // userId: string;
@@ -46,7 +47,7 @@ export class HomeComponent implements OnInit {
 
     this.getAllUserActivities().then(allActivities => {
       this.allUserActivities = allActivities;
-      console.log("BOOP" + this.allUserActivities[0].activity_name);
+      console.log("BOOP: " + this.allUserActivities[0].activity_name);
       // this.weatherImages = forecast.imageCode;
     });
 
@@ -54,7 +55,7 @@ export class HomeComponent implements OnInit {
     // console.log("BOOP" + this.allUserActivities);
   }
 
-  // getImageFromCode(weathe) {
+  // getImageFromCode(weather) {
   //   // let weatherImage: string;
 
   //   if (imageCode > 199 && imageCode < 300) {
@@ -126,6 +127,8 @@ export class HomeComponent implements OnInit {
   async getUser(username) {
     const request = await fetch(`http://localhost:8080/check-for-user/${username}`);
     const userInfo = await request.json();
+    // console.log("LOOK HERE:  " + userInfo);
+
     // const userId = await userInfo.id;
     return userInfo;
   }
@@ -162,13 +165,20 @@ export class HomeComponent implements OnInit {
     // this.message = "Success! You are now registered."
   }
 
+
+
+
+  //activity data and comparisons
   async getAllUserActivities() {
 
     const userData = await this.getUser(this.username);
 
     const request = await fetch(`http://localhost:8080/get-activities-by-user-id/${userData.id}`);
+    console.log("REQUEST HERE:  " + request);
     const allActivities = await request.json();
     // const userId = await userInfo.id;
+    // console.log("ACTIVITIES HERE:  " + allActivities);
+
     return allActivities;
   }
 
