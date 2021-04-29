@@ -11,6 +11,16 @@
   background-color: #E3F4FE;
 }
 
-.navbar navbar-dark bg-primary {
-  background: #1C9CF6;
+.navbar {
+  color: #FFFAE0;
+}
+
+.navbar-brand {
+}
+
+.bg-primary {
+}
+
+.navbar-dark {
+  background-color: #1D71F2;
 }

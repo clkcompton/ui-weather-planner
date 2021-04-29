@@ -37,9 +37,11 @@ export class LoginComponent implements OnInit {
     // this.route.queryParams.subscribe(params => {
     //   this.returnUrl = params[''];
     // });
+    // this.getUser("nopeno");
 
     console.log(window.localStorage)
   }
+
 
   //for user login
   async loginUser(username, password) {
@@ -50,20 +52,13 @@ export class LoginComponent implements OnInit {
     if(userInfo.password === password) {
         window.localStorage.setItem("username", username)
         this.message = "You are logged in!"
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       } else {
         console.log("nope, they don't match");
         this.message = "Hmm.. looks like your username or password aren't quite right. Try that again."
       }
   }
-    
-
-
-    async getUser(username) {
-      const request = await fetch(`http://localhost:8080/user/${username}`);
-      const userInfo = await request.json();
-      console.log(userInfo);
-    }
+  
   
     
   //delete user
@@ -124,13 +119,25 @@ export class LoginComponent implements OnInit {
     this.message = "Success! You are now registered."
   }
 
-  // async checkAndRegister(username, password) {
-  //   if (this.getUser(username).id) {
-  //     this.registerUser(username, password)
-  //     this.message = "Success! You are now registered."
-  //   } else {
-  //     this.message = "Sorry, that username already exists"
-  //   }
-  // }
+
+  async getUser(username) {
+    const request = await fetch(`http://localhost:8080/check-for-user/${username}`);
+    const userInfo = await request.json();
+    console.log("GET RETURN: ", userInfo);
+    return userInfo;
+  }
+
+
+  async checkAndRegister(username, password) {
+    let userValue = await this.getUser(username).then(userCreds => {
+      if (userCreds.length > 0) {
+        this.message = "Sorry, that username already exists"
+      } else {
+        this.registerUser(username, password)
+        this.message = "Success! You are now registered."
+      }
+    //  return userCreds;
+    });
+  }
 
 }

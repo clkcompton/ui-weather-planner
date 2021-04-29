@@ -1,26 +1,17 @@
 
 <div style="text-align:center">
-
-  <p>Login here!</p>
-
-  <form class="login-form">
-
-    <mat-form-field class="login-full-width">
-      <input #username matInput placeholder="Username">
-    </mat-form-field>
-
-    <mat-form-field class="login-full-width">
-      <input #password type="password" matInput placeholder="Password">
-    </mat-form-field>
-
-    <br>
-    
-  </form>
-
-<button (click)='loginUser(username.value, password.value)'>Login</button>
-
-<button (click)='registerUser(username.value, password.value)'>Sign Up</button>
-
-<p>{{message}}</p>
-
+    <h2 class="login-text" >Login here!</h2>
+  <div class="login-form">
+      <form>
+        <mat-form-field class="form-group login-full-width">
+          <input #username matInput placeholder="Username">
+        </mat-form-field>
+        <mat-form-field class="form-group login-full-width">
+          <input #password type="password" matInput placeholder="Password">
+        </mat-form-field>
+      </form>
+    <button (click)='loginUser(username.value, password.value)' class="btn btn-login">Login</button>
+    <button (click)='checkAndRegister(username.value, password.value)' class="btn btn-register">Sign Up</button>
+  </div>
+  <p>{{message}}</p>
 </div>

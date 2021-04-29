@@ -1,4 +1,8 @@
 
+.welcome-picture {
+  margin: 30px;
+  opacity: 87%;
+}
 
 .activity-title {
   display: flex;
@@ -44,7 +48,7 @@
   height: 300px;
   display: grid;
   width: 177px;
-  margin-top: 30px;
+  margin: 30px;
 }
 
 .thumbs-image {
@@ -54,4 +58,58 @@
 .btn-info {
   background: #1C9CF6;
   margin-top: 30px;
+}
+
+.logout-btn {
+  background: #1D71F2;
+  margin-top: 30px;
+  position: absolute;
+  right: -238px;
+  top: -137px;
+  border: none;
+  color: #FFFAE0;
+}
+
+.create-activity-form {
+  margin: 84px;
+  border-top: 10px;
+}
+
+.account-button {
+  display: flex;
+  position: relative;
+  background: #1D71F2;
+  margin-top: 30px;
+  color: #FFFAE0;
+  margin: auto;
+  padding: 4px;
+}
+
+.update-password {
+  margin: 74px 200px 95px 200px;
+  border: #1D71F2;
+  border-style: solid;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.delete-button {
+  display: flex;
+  position: relative;
+  /* right: 100px; */
+  background: red;
+  margin-top: 30px;
+  color: #FFFAE0;
+  margin: auto;
+  padding: 3px;
+  margin-top: 77px;
+}
+
+.btn-update {
+  background: #1C9CF6;
+  margin-top: 10px;
+  padding: 4px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  color: #FFFAE0;
 }

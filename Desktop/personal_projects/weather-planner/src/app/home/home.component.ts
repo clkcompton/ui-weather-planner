@@ -29,10 +29,10 @@ export class HomeComponent implements OnInit {
 
   daysOfTheWeek = [];
   allUserActivities = [];
-  // comparisonBooleans = [];
   username = window.localStorage.username;
   testImage = "https://cdn3.iconfinder.com/data/icons/weather-16/256/Storm-512.png";
-  // userId: string;
+  showUserAccountOptions = false;
+  passwordUpdateMessage
   // weatherImages = [];
 
   constructor(private router: Router, private http: HttpClient) { }
@@ -77,6 +77,16 @@ export class HomeComponent implements OnInit {
   //   return weatherImage;
 
   // }
+  toggleUserAccountOptions() {
+    this.showUserAccountOptions = !this.showUserAccountOptions;
+    console.log("showUserAccountOptions", this.showUserAccountOptions)
+  }
+
+
+  logoutUser = function(): void {
+    window.localStorage.clear();
+    this.router.navigate(['/']);
+  }
 
 
   async getDailyForecast() {
@@ -99,9 +109,10 @@ export class HomeComponent implements OnInit {
     const deleted = await request.json();
     console.log(deleted);
     window.localStorage.clear();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
+  
   //update user password
   async updatePassword(username, newPassword) {
     
@@ -150,8 +161,6 @@ export class HomeComponent implements OnInit {
       // user_id: this.getUser(this.username)
     };
 
-    console.log(addActivityCreds);
-
     const settings = {
       method: 'POST',
       headers: {
@@ -174,7 +183,7 @@ export class HomeComponent implements OnInit {
     const userData = await this.getUser(this.username);
 
     const request = await fetch(`http://localhost:8080/get-activities-by-user-id/${userData.id}`);
-    console.log("REQUEST HERE:  " + request);
+    // console.log("REQUEST HERE:  " + request);
     const allActivities = await request.json();
     // const userId = await userInfo.id;
     // console.log("ACTIVITIES HERE:  " + allActivities);
