@@ -27,6 +27,11 @@ I want to plan a time to go camping but am reliant on the weather. With the app,
 
 <br>
 
+**Project Architecture**  
+<img src="https://user-images.githubusercontent.com/74030805/116927540-6ac31480-ac21-11eb-87e8-2b7bd37a0b0c.png" width="300">
+
+<br>
+
 ### Features
 **Log in/log out/user registration**
 
