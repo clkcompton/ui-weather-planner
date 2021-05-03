@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
 
     this.getAllUserActivities().then(allActivities => {
       this.allUserActivities = allActivities;
-      console.log("BOOP: " + this.allUserActivities[0].activity_name);
+      // console.log("BOOP: " + this.allUserActivities[0].activity_name);
       // this.weatherImages = forecast.imageCode;
     });
 

@@ -1,5 +1,8 @@
 # WeatherPlanner
 
+Weather Planner solves the problem of trying to choose an activity's date based off of weather conditions
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.2.
 
 ## Development server
