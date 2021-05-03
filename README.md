@@ -1,6 +1,6 @@
 # Weather Planner
 
-###Description  
+### Description  
 A web app that lets the user search the week's forecast for their ideal weather scenario.
 
 **User scenario:**  
@@ -8,13 +8,15 @@ I want to plan a time to go camping but am reliant on the weather. With the app,
 
 **Please note, this project's functionality relies on TWO repositories, ui-weather-planner and [api-weather-planner](https://github.com/clkcompton/api-weather-planner.git) repositories.** 
 
+<br>
+
 <img src="https://user-images.githubusercontent.com/74030805/116892393-67b22f00-abf5-11eb-8362-4172f486b5a7.png" width="300">
 
 <img src="https://user-images.githubusercontent.com/74030805/116915636-e1f0ac80-ac11-11eb-994a-201d7ed728c0.png" width="300">
 
+<br>
 
-
-###Set-up notes
+### Set-up notes
 * Install the API for this project from https://github.com/clkcompton/api-weather-planner.git. Check API readme for setup instructions (database creation, endpoints, weather API, etc.).
 * Run `npm i` within the project directory to install project dependencies
 * Install global dependencies. These are the global dependencies I used along with the recommended versions:
@@ -23,6 +25,7 @@ I want to plan a time to go camping but am reliant on the weather. With the app,
 	* typescript@4.1.2
 * Run application with `npm run start` and view project in the browser at http://localhost:4200/
 
+<br>
 
 ### Features
 **Log in/log out/user registration**
@@ -41,6 +44,8 @@ I want to plan a time to go camping but am reliant on the weather. With the app,
 * Weather API searches one week into the future for the selected criteria
 	* Note: the application has been set up to accomidate searching further into the future. However, Weather APIs that search further into the future require a paid subscription.
 * Returns results to the weather planner API
+
+<br>
 
 ### Technologies 
 * Typescript
