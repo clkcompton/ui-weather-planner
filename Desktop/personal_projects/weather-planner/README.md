@@ -68,4 +68,6 @@ I want to plan a time to go camping but am reliant on the weather. With the app,
 
 <br>
 
+- - -
+
 Made with ❤️ by [Cori Compton](www.linkedin.com/in/cori-compton)
