@@ -25,36 +25,29 @@ Example: I want to plan a time to go camping but am reliant on the weather. With
 
 
 ### Features
-Log in/log out/user registration
+**Log in/log out/user registration**
 
-Main page with past user preferences/searches
+**Main page with past user preferences/searches**
+* Results of forecast/activity comparisons are easy to read; thumbs up image if the day's forecast matches the user's preferences, thumbs down if not
+* * Forecast for each day is displayed
 * Edit/delete weather preferences
-* Select the fields to be edited/deleted
 	
-User entry/drop down selections for weather conditions
-* Activity name, temperature, precipitation, sunny/cloudy, wind
+**Ability to create a new activity and preferences**
+* User entry for activity name and min/max temperature
+* Drop down selection for weather type (clear skies, rainy, clouds, etc.)
+* Shows forecast comparison results upon submission
 	
-Calling a weather API and comparing it to the user's selected weather preferences 
-* API will search at least a week into the future for the selected criteria
-* Returns results
-	
-Post screen that lets the user see the results of their search
-* Easy to read, labeled results
-* Redirect button to return to the home page![Uploading 2Login_weather-planner.png…]()
-
-
-
-**running the api**
-* endpoint file (API readme)
-* get open weather api key (free); add instructions
-* nodemon@2.0.7 (for API)
-* Create mysql database with two tables, `user` and `activity` (provide mysql link) (maybe add a query)
+**Calling a weather API and comparing it to the user's selected weather preferences**
+* Weather API searches one week into the future for the selected criteria
+	* Note: the application has been set up to accomidate searching further into the future. However, Weather APIs that search further into the future require a paid subscription.
+* Returns results to the weather planner API
 
 ### Technologies
-* JS
+* Typescript
+* Javascript
 * Node.js
 * MYSQL
-* HTML
+* HTML/CSS
 * Open Weather API (One Call)
 
 
@@ -62,3 +55,9 @@ Post screen that lets the user see the results of their search
 * Angular
 * Node.js
 * Express
+
+**running the api**
+* endpoint file (API readme)
+* get open weather api key (free); add instructions
+* nodemon@2.0.7 (for API)
+* Create mysql database with two tables, `user` and `activity` (provide mysql link) (maybe add a query)
