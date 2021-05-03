@@ -12,13 +12,17 @@ Example: I want to plan a time to go camping but am reliant on the weather. With
 2. Set-up notes
 
 **Set-up notes**
-* angular/node updates
+* check for angular/node updates
 * architecture diagram (ui, open weather, api, database)
 * endpoint file
 * get open weather api key (free); add instructions
-* run npm i to install deoendencies
-* create mysql database (provide mysql link) (maybe add a query)
+* run `npm i` within the project directory to install project dependencies
+* create mysql database with two tables, `user` and `activity` (provide mysql link) (maybe add a query)
 * check global dependenecies (`npm list -g --depth 0`)
+	* @angular/cli@8.2.2
+	* nodemon@2.0.7 (API)
+	* npm@7.10.0
+	* typescript@4.1.2
 * command to run programs (`npm run start`)
 
 
