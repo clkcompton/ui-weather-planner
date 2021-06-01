@@ -7,16 +7,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
-// weatherImage: string;
-// export interface DialogData {
-//   animal: string;
-//   name: string;
-// }
-
-// @Injectable()
-// export class ConfigService {
-//   constructor(private http: HttpClient) { }
-// }
 
 @Component({
   selector: 'app-home',
@@ -35,16 +25,20 @@ export class HomeComponent implements OnInit {
   passwordUpdateMessage
   // weatherImages = [];
 
+
   constructor(private router: Router, private http: HttpClient) { }
 
 
   ngOnInit() {
 
+
+    //gets the forecast for each day within the upcoming 7 days
     this.getDailyForecast().then(forecast => {
       this.daysOfTheWeek = forecast;
       // this.weatherImages = forecast.imageCode;
     });
 
+    //gets all activities saved to the user
     this.getAllUserActivities().then(allActivities => {
       this.allUserActivities = allActivities;
       // console.log("BOOP: " + this.allUserActivities[0].activity_name);
@@ -53,8 +47,137 @@ export class HomeComponent implements OnInit {
 
     // const userId = this.getUser(this.username);
     // console.log("BOOP" + this.allUserActivities);
+
+
   }
 
+
+
+  //hide or show user account options
+  toggleUserAccountOptions() {
+    this.showUserAccountOptions = !this.showUserAccountOptions;
+    console.log("showUserAccountOptions", this.showUserAccountOptions)
+  }
+
+
+
+  //terminates the user's session and returns the user to login page
+  logoutUser = function(): void {
+    window.localStorage.clear();
+    this.router.navigate(['/']);
+  }
+
+
+
+  //gets the forecast for each day within the upcoming 7 days
+  async getDailyForecast() {
+    
+    const request = await fetch("http://localhost:8080/weather");
+    const forecast = await request.json();
+    return forecast;
+  }
+
+
+
+  //delete user
+  async deleteUser(username) {
+    const settings = {
+      method: 'DELETE',
+      headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+      },
+    };
+    const request = await fetch(`http://localhost:8080/user/${username}`, settings);
+    const deleted = await request.json();
+    console.log(deleted);
+    window.localStorage.clear();
+    this.router.navigate(['/']);
+  }
+
+  
+
+  //update user password
+  async updatePassword(username, newPassword) {
+    
+    const testObject = {
+      password: newPassword
+    };
+    const settings = {
+      method: 'PUT',
+      headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(testObject)
+  };
+    const request = await fetch(`http://localhost:8080/update-password-by-username/${username}`, settings);
+    const updatedUser = await request.json();
+    console.log(updatedUser);
+  }
+
+
+
+  //get user id from the username
+  async getUser(username) {
+    const request = await fetch(`http://localhost:8080/check-for-user/${username}`);
+    const userInfo = await request.json();
+    return userInfo;
+  }
+
+
+
+  //saves a new activity to the user's activity list and the database
+  async addActivity(activityName, minTemp, maxTemp, weatherDescription) {
+
+    const userData = await this.getUser(this.username);
+
+    const addActivityCreds = {
+      activity_name: activityName,
+      min_temperature: minTemp,
+      max_temperature: maxTemp,
+      weather_description: weatherDescription,
+      user_id: userData.id
+      // user_id: this.getUser(this.username)
+    };
+
+    const settings = {
+      method: 'POST',
+      headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(addActivityCreds)
+    };
+    const newActivityData = await fetch("http://localhost:8080/addActivity", settings).catch((err) => { console.error(err); });
+  }
+
+
+
+  //gets the user's saved activities along with weather comparisons
+  async getAllUserActivities() {
+
+    const userData = await this.getUser(this.username);
+
+    const request = await fetch(`http://localhost:8080/get-activities-by-user-id/${userData.id}`);
+    const allActivities = await request.json();
+    // const userId = await userInfo.id;
+
+    return allActivities;
+  }
+
+
+}
+
+
+
+
+
+//working code below:
+
+
+
+  //use for matching photos to weather conditions, using the weather API codes
   // getImageFromCode(weather) {
   //   // let weatherImage: string;
 
@@ -77,122 +200,8 @@ export class HomeComponent implements OnInit {
   //   return weatherImage;
 
   // }
-  toggleUserAccountOptions() {
-    this.showUserAccountOptions = !this.showUserAccountOptions;
-    console.log("showUserAccountOptions", this.showUserAccountOptions)
-  }
 
 
-  logoutUser = function(): void {
-    window.localStorage.clear();
-    this.router.navigate(['/']);
-  }
-
-
-  async getDailyForecast() {
-    
-    const request = await fetch("http://localhost:8080/weather");
-    const forecast = await request.json();
-    return forecast;
-  }
-
-  //delete user
-  async deleteUser(username) {
-    const settings = {
-      method: 'DELETE',
-      headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-      },
-    };
-    const request = await fetch(`http://localhost:8080/user/${username}`, settings);
-    const deleted = await request.json();
-    console.log(deleted);
-    window.localStorage.clear();
-    this.router.navigate(['/']);
-  }
-
-  
-  //update user password
-  async updatePassword(username, newPassword) {
-    
-    const testObject = {
-      password: newPassword
-    };
-    const settings = {
-      method: 'PUT',
-      headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(testObject)
-  };
-    const request = await fetch(`http://localhost:8080/update-password-by-username/${username}`, settings);
-    const updatedUser = await request.json();
-    console.log(updatedUser);
-  }
-
-
-
-//get user id
-  async getUser(username) {
-    const request = await fetch(`http://localhost:8080/check-for-user/${username}`);
-    const userInfo = await request.json();
-    // console.log("LOOK HERE:  " + userInfo);
-
-    // const userId = await userInfo.id;
-    return userInfo;
-  }
-
-
-
-
-  async addActivity(activityName, minTemp, maxTemp, weatherDescription) {
-
-    const userData = await this.getUser(this.username);
-    // console.log("USERDATA: " + userData)
-
-    const addActivityCreds = {
-      activity_name: activityName,
-      min_temperature: minTemp,
-      max_temperature: maxTemp,
-      weather_description: weatherDescription,
-      user_id: userData.id
-      // user_id: this.getUser(this.username)
-    };
-
-    const settings = {
-      method: 'POST',
-      headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(addActivityCreds)
-    };
-    const newActivityData = await fetch("http://localhost:8080/addActivity", settings).catch((err) => { console.error(err); });
-
-    // this.message = "Success! You are now registered."
-  }
-
-
-
-
-  //activity data and comparisons
-  async getAllUserActivities() {
-
-    const userData = await this.getUser(this.username);
-
-    const request = await fetch(`http://localhost:8080/get-activities-by-user-id/${userData.id}`);
-    // console.log("REQUEST HERE:  " + request);
-    const allActivities = await request.json();
-    // const userId = await userInfo.id;
-    // console.log("ACTIVITIES HERE:  " + allActivities);
-
-    return allActivities;
-  }
-
-
-}
 
 // export class AddActivity {
 

@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     // });
     // this.getUser("nopeno");
 
-    console.log(window.localStorage)
+    // console.log(window.localStorage)
   }
 
 
@@ -62,39 +62,52 @@ export class LoginComponent implements OnInit {
   
     
   //delete user
-    async deleteUser(id) {
-      const settings = {
-        method: 'DELETE',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
-      };
-      const request = await fetch(`http://localhost:8080/user/${id}`, settings);
-      const deleted = await request.json();
-      console.log(deleted);
-    }
+  async deleteUser(id) {
+    const settings = {
+      method: 'DELETE',
+      headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+      },
+    };
+    const request = await fetch(`http://localhost:8080/user/${id}`, settings);
+    const deleted = await request.json();
+    console.log(deleted);
+  }
 
 
 
   //update user password
-    async updatePassword() {
-      const id = 1;
-      const testObject = {
-        password: "PassAgain"
-      };
-      const settings = {
-        method: 'PUT',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(testObject)
+  async updatePassword() {
+    const id = 1;
+    const testObject = {
+      password: "PassAgain"
     };
-      const request = await fetch(`http://localhost:8080/user/${id}`, settings);
-      const updatedUser = await request.json();
-      console.log(updatedUser);
-    }
+    const settings = {
+      method: 'PUT',
+      headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(testObject)
+  };
+    const request = await fetch(`http://localhost:8080/user/${id}`, settings);
+    const updatedUser = await request.json();
+    console.log(updatedUser);
+  }
+
+
+
+
+  //get user id and password from username
+  async getUser(username) {
+    const request = await fetch(`http://localhost:8080/check-for-user/${username}`);
+    const userInfo = await request.json();
+    console.log("GET RETURN: ", userInfo);
+    return userInfo;
+  }
+
+
 
 
   //register user; add method to check if user exists
@@ -120,14 +133,8 @@ export class LoginComponent implements OnInit {
   }
 
 
-  async getUser(username) {
-    const request = await fetch(`http://localhost:8080/check-for-user/${username}`);
-    const userInfo = await request.json();
-    console.log("GET RETURN: ", userInfo);
-    return userInfo;
-  }
 
-
+  //working code to better check if a user exists before creating a new user
   async checkAndRegister(username, password) {
     let userValue = await this.getUser(username).then(userCreds => {
       if (userCreds.length > 0) {
