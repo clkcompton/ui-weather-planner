@@ -167,9 +167,22 @@ export class HomeComponent implements OnInit {
   }
 
 
+  //delete activity
+  async deleteActivity(activityId) {
+
+    const settings = {
+      method: 'DELETE',
+      headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+      },
+    };
+    const request = await fetch(`http://localhost:8080/delete_activity/${activityId}`, settings);
+    const deleted = await request.json();
+    console.log("deleted activity: ", deleted);
+  }
+
 }
-
-
 
 
 

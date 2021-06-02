@@ -13,31 +13,21 @@
   display: grid;
   margin-top: 30px;
   opacity: 87%;
-  
-
 }
 
 .activity-days {
   display: flex;
   flex-direction: row;
-  /* align-items: center; */
   justify-content: space-around;
   height: 400px;
-  /* width:fit-content; */
   align-content: space-between;
   height: 300px;
-  /* flex: 1 1 0; */
-
 }
 
 .activity {
   display: flex;
   flex-direction: column;
   align-self: center;
-  
-  
-  
-  /* flex-shrink: 5; */
 }
 
 .new-activity {
@@ -91,6 +81,15 @@
   border-style: solid;
   padding: 20px;
   border-radius: 8px;
+}
+
+.delete-activity-button {
+  position: relative;
+  left: 400px;
+  background: rgba(255, 0, 0, 0.678);
+  color: #FFFAE0;
+  padding: 1px;
+  float: right;
 }
 
 .delete-button {

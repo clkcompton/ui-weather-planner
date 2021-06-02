@@ -14,6 +14,7 @@
 
 <div class="activity" *ngFor = "let activity of allUserActivities">
     <mat-card class="activity-title">
+      <button (click)='deleteActivity(activity.id_activity)' class="btn delete-activity-button">Delete Activity</button>
       <mat-card-title>{{activity.activity_name}}</mat-card-title>
       <mat-card-subtitle>Min: {{activity.min_temperature}}, Max: {{activity.max_temperature}}, {{activity.weather_description}}</mat-card-subtitle>
     </mat-card>
