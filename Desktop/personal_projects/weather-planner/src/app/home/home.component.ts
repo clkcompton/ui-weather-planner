@@ -203,8 +203,10 @@ export class HomeComponent implements OnInit {
     console.log("deleted activity: ", deleted);
   }
 
-  async updateActivity(activityId, weatherDescription) {
-    const testObject = {
+  async updateActivity(activityId, minTemp, maxTemp, weatherDescription) {
+    const updatedActivityInfo = {
+      min_temperature: minTemp,
+      max_temperature: maxTemp,
       weather_description: weatherDescription
     };
     const settings = {
@@ -213,11 +215,11 @@ export class HomeComponent implements OnInit {
           Accept: 'application/json',
           'Content-Type': 'application/json',
       },
-      body: JSON.stringify(testObject)
+      body: JSON.stringify(updatedActivityInfo)
   };
     const request = await fetch(`http://localhost:8080/update-activity/${activityId}`, settings);
-    const updatedUser = await request.json();
-    console.log("updatedUser", updatedUser);
+    const updatedActivity = await request.json();
+    console.log("updated activity: ", updatedActivity);
   }
 
 }

@@ -13,8 +13,6 @@
 
 <div class="activity" *ngFor = "let activity of allUserActivities">
     <mat-card class="activity-title">
-      <button (click)='deleteActivity(activity.id_activity)' class="btn delete-activity-button">Delete Activity</button>
-      <button class="btn update-activity-button" (click)="open(content)">Update</button>
       <mat-card-title>{{activity.activity_name}}</mat-card-title>
       <mat-card-subtitle>Min: {{activity.min_temperature}}, Max: {{activity.max_temperature}}, {{activity.weather_description}}</mat-card-subtitle>
     </mat-card>
@@ -34,6 +32,10 @@
         <!-- <p>{{activity.activityForecast.isInBounds}}</p> -->
       </mat-card>
     </div>
+    <mat-card class="activity-preferences">
+      <button (click)='deleteActivity(activity.id_activity)' class="btn delete-activity-button">Delete Activity</button>
+      <button class="btn update-activity-button" (click)="open(content)">Update</button>
+    </mat-card>
 
     <ng-template #content let-modal>
       <div class="modal-header">
@@ -46,33 +48,30 @@
       <form>
         <div class="form-group">
           <label for="max-temp">Max Temperature</label>
-          <input #maxTemp type="number" class="form-control" id="max-temp" placeholder="Enter Max">
+          <input #newMaxTemp type="number" class="form-control" id="max-temp" placeholder="Enter Max">
         </div>
         <div class="form-group">
           <label for="min-temp">Min Temperature</label>
-          <input #minTemp type="number" class="form-control" id="min-temp" placeholder="Enter Min">
+          <input #newMinTemp type="number" class="form-control" id="min-temp" placeholder="Enter Min">
         </div>
-        <div>
-          <mat-card class="form-group">
-            <label for="new-weather-type">Preferred Weather Condition</label>
-            <select #newWeatherDescription name="new-weather-type" class="form-control">
-              <option value="Clear">clear skies</option>
-              <option value="Clouds">clouds</option>
-              <option value="Rain">rainy</option>
-              <option value="Snow">snow</option>
-              <option value="Thunderstorm">thunderstorms</option>
-              <option value="Drizzle">light drizzle</option>
-            </select>
-            <button (click)='updateActivity(activity.id_activity, newWeatherDescription.value)' class="btn btn-update">Update</button>
-          </mat-card>
+        <div class="form-group">
+          <label for="new-weather-type">Preferred Weather Condition</label>
+          <select #newWeatherDescription name="new-weather-type" class="form-control">
+            <option value="Clear">clear skies</option>
+            <option value="Clouds">clouds</option>
+            <option value="Rain">rainy</option>
+            <option value="Snow">snow</option>
+            <option value="Thunderstorm">thunderstorms</option>
+            <option value="Drizzle">light drizzle</option>
+          </select> 
         </div>
       </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+        <button type="button" class="btn btn-outline-dark" (click)='updateActivity(activity.id_activity, newMinTemp.value, newMaxTemp.value, newWeatherDescription.value)' class="btn btn-update">Update</button>
       </div>
     </ng-template>
-    
+
 </div>
 
 <div class="create-activity-form">
@@ -111,7 +110,7 @@
     <input #newPass type="password" class="form-control" id="new-password" placeholder="Enter new password"/>
     <button (click)='updatePassword(username, newPass.value)' class="btn btn-update">Update</button>
   </div>
-  <div>
+  <!-- <div>
     <button (click)='deleteUser(username)' class="btn delete-button">Delete my account</button>
-  </div>
+  </div> -->
 </div>
