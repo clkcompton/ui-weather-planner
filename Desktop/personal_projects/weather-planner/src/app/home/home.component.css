@@ -104,6 +104,16 @@
   margin-top: 77px;
 }
 
+.update-activity-button {
+  position: relative;
+  left: 400px;
+  background: rgba(0, 225, 255, 0.836);
+  color: #FFFAE0;
+  padding: 1px;
+  float: right;
+  margin-top: 3px;
+}
+
 .btn-update {
   background: #1C9CF6;
   margin-top: 10px;

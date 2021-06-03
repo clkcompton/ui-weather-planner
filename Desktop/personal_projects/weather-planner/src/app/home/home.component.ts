@@ -6,6 +6,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -22,11 +23,11 @@ export class HomeComponent implements OnInit {
   username = window.localStorage.username;
   testImage = "https://cdn3.iconfinder.com/data/icons/weather-16/256/Storm-512.png";
   showUserAccountOptions = false;
-  passwordUpdateMessage
+  closeResult = '';
   // weatherImages = [];
 
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient, private modalService: NgbModal) { }
 
 
   ngOnInit() {
@@ -51,6 +52,26 @@ export class HomeComponent implements OnInit {
 
   }
 
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
+    // .result.then((result) => {
+    //   this.closeResult = `Closed with: ${result}`;
+    // }, (reason) => {
+    //   // this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    // });
+  }
+
+  //provided by Angular. Tested code without this segment and it doesn't seem necessary (along with the above commented code)
+
+  // private getDismissReason(reason: any): string {
+  //   if (reason === ModalDismissReasons.ESC) {
+  //     return 'by pressing ESC';
+  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+  //     return 'by clicking on a backdrop';
+  //   } else {
+  //     return `with: ${reason}`;
+  //   }
+  // }
 
 
   //hide or show user account options
@@ -180,6 +201,23 @@ export class HomeComponent implements OnInit {
     const request = await fetch(`http://localhost:8080/delete_activity/${activityId}`, settings);
     const deleted = await request.json();
     console.log("deleted activity: ", deleted);
+  }
+
+  async updateActivity(activityId, weatherDescription) {
+    const testObject = {
+      weather_description: weatherDescription
+    };
+    const settings = {
+      method: 'PUT',
+      headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(testObject)
+  };
+    const request = await fetch(`http://localhost:8080/update-activity/${activityId}`, settings);
+    const updatedUser = await request.json();
+    console.log("updatedUser", updatedUser);
   }
 
 }
