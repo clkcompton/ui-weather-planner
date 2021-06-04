@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-// import { testQueryClass } from '../.././script';
 
 
 @Component({
@@ -15,10 +14,5 @@ export class AppComponent {
   
   constructor() {}
   
-  // test() {
-  //   window.alert('hello');
-  // //   console.log('hello')
-  // //   this.testQuery();
-  // }
 }
 

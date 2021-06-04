@@ -30,17 +30,6 @@
   align-self: center;
 }
 
-.activity-preferences {
-  display: flex;
-  flex-direction: row;
-  align-self: center;
-  justify-content: center;
-  width: 950px;
-  display: grid;
-  margin-bottom: 30px;
-  opacity: 87%;
-}
-
 .new-activity {
   display: flex;
   flex-direction: column;
@@ -52,6 +41,14 @@
   margin: 30px;
 }
 
+.add-activity-title {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
 .thumbs-image {
   width: 100px;
 }
@@ -59,6 +56,7 @@
 .btn-info {
   background: #1C9CF6;
   margin-top: 30px;
+  position: relative;
 }
 
 .logout-btn {
@@ -72,8 +70,12 @@
 }
 
 .create-activity-form {
-  margin: 84px;
-  border-top: 10px;
+  margin-top: 84px;
+  margin-bottom: 40px;
+  border-style: solid;
+  border-color: #1C9CF6;
+  border-radius: 20px;
+  padding: 30px;
 }
 
 .account-button {
@@ -87,18 +89,14 @@
 }
 
 .update-password {
-  margin: 74px 200px 95px 200px;
-  border: #1D71F2;
-  border-style: solid;
+  display: flex;
+  position: relative;
+  margin: auto;
+
+  color:rgba(46, 78, 216, 0.836);
   padding: 20px;
   border-radius: 8px;
-}
-
-.delete-activity-button {
-  position: relative;
-  background: rgba(255, 0, 0, 0.678);
-  color: #FFFAE0;
-  padding: 1px;
+  background-color: transparent;
 }
 
 .delete-button {
@@ -113,13 +111,31 @@
   margin-top: 77px;
 }
 
+
+.activity-preferences {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  width: 950px;
+  display: grid;
+  margin-bottom: 30px;
+  opacity: 87%;
+}
+
+.delete-activity-button {
+  /* position: relative; */
+  float: right;
+  background: rgba(255, 0, 0, 0.678);
+  color: #FFFAE0;
+  padding: 3px;
+}
+
 .update-activity-button {
-  position: relative;
+  /* position: relative; */
   background: rgba(46, 78, 216, 0.836);
   color: #FFFAE0;
-  padding: 1px;
-  float: center;
-  margin-top: 3px;
+  padding: 3px;
+  float: left;
 }
 
 .btn-update {

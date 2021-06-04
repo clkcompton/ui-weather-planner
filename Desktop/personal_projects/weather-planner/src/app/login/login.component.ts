@@ -24,8 +24,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
 
-    // this.getUser("testUser")
-
     // this.updatePassword().then(updatedUser => {
     //   return updatedUser;
     // });
@@ -34,12 +32,7 @@ export class LoginComponent implements OnInit {
     //   return deleted;
     // });
 
-    // this.route.queryParams.subscribe(params => {
-    //   this.returnUrl = params[''];
-    // });
-    // this.getUser("nopeno");
 
-    // console.log(window.localStorage)
   }
 
 
@@ -98,18 +91,6 @@ export class LoginComponent implements OnInit {
 
 
 
-
-  //get user id and password from username
-  async getUser(username) {
-    const request = await fetch(`http://localhost:8080/check-for-user/${username}`);
-    const userInfo = await request.json();
-    console.log("GET RETURN: ", userInfo);
-    return userInfo;
-  }
-
-
-
-
   //register user; add method to check if user exists
   async registerUser(username, password) {
     const registrationCreds = {
@@ -130,6 +111,16 @@ export class LoginComponent implements OnInit {
     const newUserData = await fetch("http://localhost:8080/user", settings).catch((err) => { console.error(err); });
 
     this.message = "Success! You are now registered."
+  }
+
+
+
+  //get user id and password from username
+  async getUser(username) {
+    const request = await fetch(`http://localhost:8080/check-for-user/${username}`);
+    const userInfo = await request.json();
+    console.log("GET RETURN: ", userInfo);
+    return userInfo;
   }
 
 

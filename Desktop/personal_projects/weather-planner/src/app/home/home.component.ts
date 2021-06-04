@@ -1,11 +1,11 @@
-import { stringify } from '@angular/compiler/src/util';
+// import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+// import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+// import { Observable, throwError } from 'rxjs';
+// import { catchError, retry } from 'rxjs/operators';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -42,36 +42,19 @@ export class HomeComponent implements OnInit {
     //gets all activities saved to the user
     this.getAllUserActivities().then(allActivities => {
       this.allUserActivities = allActivities;
-      // console.log("BOOP: " + this.allUserActivities[0].activity_name);
       // this.weatherImages = forecast.imageCode;
     });
 
-    // const userId = this.getUser(this.username);
-    // console.log("BOOP" + this.allUserActivities);
-
 
   }
 
+
+
+  //open modal for activity editing
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
-    // .result.then((result) => {
-    //   this.closeResult = `Closed with: ${result}`;
-    // }, (reason) => {
-    //   // this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    // });
   }
 
-  //provided by Angular. Tested code without this segment and it doesn't seem necessary (along with the above commented code)
-
-  // private getDismissReason(reason: any): string {
-  //   if (reason === ModalDismissReasons.ESC) {
-  //     return 'by pressing ESC';
-  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-  //     return 'by clicking on a backdrop';
-  //   } else {
-  //     return `with: ${reason}`;
-  //   }
-  // }
 
 
   //hide or show user account options
@@ -100,54 +83,6 @@ export class HomeComponent implements OnInit {
 
 
 
-  //delete user
-  async deleteUser(username) {
-    const settings = {
-      method: 'DELETE',
-      headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-      },
-    };
-    const request = await fetch(`http://localhost:8080/user/${username}`, settings);
-    const deleted = await request.json();
-    console.log(deleted);
-    window.localStorage.clear();
-    this.router.navigate(['/']);
-  }
-
-  
-
-  //update user password
-  async updatePassword(username, newPassword) {
-    
-    const testObject = {
-      password: newPassword
-    };
-    const settings = {
-      method: 'PUT',
-      headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(testObject)
-  };
-    const request = await fetch(`http://localhost:8080/update-password-by-username/${username}`, settings);
-    const updatedUser = await request.json();
-    console.log(updatedUser);
-  }
-
-
-
-  //get user id from the username
-  async getUser(username) {
-    const request = await fetch(`http://localhost:8080/check-for-user/${username}`);
-    const userInfo = await request.json();
-    return userInfo;
-  }
-
-
-
   //saves a new activity to the user's activity list and the database
   async addActivity(activityName, minTemp, maxTemp, weatherDescription) {
 
@@ -171,21 +106,24 @@ export class HomeComponent implements OnInit {
       body: JSON.stringify(addActivityCreds)
     };
     const newActivityData = await fetch("http://localhost:8080/addActivity", settings).catch((err) => { console.error(err); });
+    
+    location.reload();
+    return false;
   }
 
 
 
-  //gets the user's saved activities along with weather comparisons
+  //get the user's saved activities along with weather comparisons
   async getAllUserActivities() {
 
     const userData = await this.getUser(this.username);
 
     const request = await fetch(`http://localhost:8080/get-activities-by-user-id/${userData.id}`);
     const allActivities = await request.json();
-    // const userId = await userInfo.id;
 
     return allActivities;
   }
+
 
 
   //delete activity
@@ -201,8 +139,14 @@ export class HomeComponent implements OnInit {
     const request = await fetch(`http://localhost:8080/delete_activity/${activityId}`, settings);
     const deleted = await request.json();
     console.log("deleted activity: ", deleted);
+
+    location.reload();
+    return false;
   }
 
+
+
+  //update activity
   async updateActivity(activityId, minTemp, maxTemp, weatherDescription) {
     const updatedActivityInfo = {
       min_temperature: minTemp,
@@ -216,10 +160,64 @@ export class HomeComponent implements OnInit {
           'Content-Type': 'application/json',
       },
       body: JSON.stringify(updatedActivityInfo)
-  };
+    };
     const request = await fetch(`http://localhost:8080/update-activity/${activityId}`, settings);
     const updatedActivity = await request.json();
     console.log("updated activity: ", updatedActivity);
+
+    location.reload();
+    return false;
+  }
+
+
+
+  //delete user; not currently in use
+  async deleteUser(username) {
+    const settings = {
+      method: 'DELETE',
+      headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+      },
+    };
+    const request = await fetch(`http://localhost:8080/user/${username}`, settings);
+    const deleted = await request.json();
+    console.log(deleted);
+    window.localStorage.clear();
+    this.router.navigate(['/']);
+  }
+  
+    
+  
+  //update user password
+  async updatePassword(username, newPassword) {
+    
+    const testObject = {
+      password: newPassword
+    };
+    const settings = {
+      method: 'PUT',
+      headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(testObject)
+    };
+    const request = await fetch(`http://localhost:8080/update-password-by-username/${username}`, settings);
+    const updatedUser = await request.json();
+    console.log(updatedUser);
+
+    location.reload();
+    return false;
+  }
+  
+
+  
+  //get user id from the username
+  async getUser(username) {
+    const request = await fetch(`http://localhost:8080/check-for-user/${username}`);
+    const userInfo = await request.json();
+    return userInfo;
   }
 
 }
@@ -253,42 +251,3 @@ export class HomeComponent implements OnInit {
   //   return weatherImage;
 
   // }
-
-
-
-// export class AddActivity {
-
-//   animal: string;
-//   name: string;
-
-//   constructor(public dialog: MatDialog) {}
-
-//   openDialog(): void {
-//     const dialogRef = this.dialog.open(AddActivityDialog, {
-//       width: '250px',
-//       data: {name: this.name, animal: this.animal}
-//     });
-
-//     dialogRef.afterClosed().subscribe(result => {
-//       console.log('The dialog was closed');
-//       this.animal = result;
-//     });
-//   }
-
-// }
-
-// @Component({
-//   selector: 'add-activity-dialog',
-//   templateUrl: './add-activity/add-activity-dialog.html',
-// })
-// export class AddActivityDialog {
-
-//   constructor(
-//     public dialogRef: MatDialogRef<AddActivityDialog>,
-//     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
-//   onNoClick(): void {
-//     this.dialogRef.close();
-//   }
-
-// }

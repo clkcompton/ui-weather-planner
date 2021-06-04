@@ -9,15 +9,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material';
-import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
-import {MatCardModule} from '@angular/material/card';
+import { MatDialogModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-// import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
-
-
-// import { AddActivity, AddActivityDialog } from './home/home.component';
-
 
 
 @NgModule({
@@ -25,11 +19,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    // AddActivity, 
-    // AddActivityDialog
   ],
 
-  // entryComponents: [AddActivityDialog],
 
   imports: [
     MatMenuModule,
@@ -41,13 +32,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatDialogModule,
     MatCardModule,
     NgbModule
-    // AddActivityDialog
-    // MatDialog
-    // MatDialogRef
   ],
-  providers: [
-    // { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 
   
