@@ -10,9 +10,9 @@ I want to plan a time to go camping but am reliant on the weather. With the app,
 
 <br>
 
-<img src="https://user-images.githubusercontent.com/74030805/116892393-67b22f00-abf5-11eb-8362-4172f486b5a7.png" width="300">
+<img src="https://user-images.githubusercontent.com/74030805/116892393-67b22f00-abf5-11eb-8362-4172f486b5a7.png" width="500">
 
-<img src="https://user-images.githubusercontent.com/74030805/116915636-e1f0ac80-ac11-11eb-994a-201d7ed728c0.png" width="300">
+<img src="https://user-images.githubusercontent.com/74030805/116915636-e1f0ac80-ac11-11eb-994a-201d7ed728c0.png" width="500">
 
 <br>
 
@@ -27,8 +27,8 @@ I want to plan a time to go camping but am reliant on the weather. With the app,
 
 <br>
 
-**Project Architecture**  
-<img src="https://user-images.githubusercontent.com/74030805/116927540-6ac31480-ac21-11eb-87e8-2b7bd37a0b0c.png" width="300">
+**Architecture Diagram**  
+<img src="https://user-images.githubusercontent.com/74030805/116927540-6ac31480-ac21-11eb-87e8-2b7bd37a0b0c.png" width="500">
 
 <br>
 
@@ -65,3 +65,9 @@ I want to plan a time to go camping but am reliant on the weather. With the app,
 * Angular
 * Node.js (required for API)
 * Express (required for API)
+
+<br>
+
+- - -
+
+Made with ❤️ by [Cori Compton](www.linkedin.com/in/cori-compton)
