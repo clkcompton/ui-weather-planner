@@ -4,13 +4,15 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {Location} from '@angular/common'; 
 // import {fetch} from 'node-fetch';
 
+
+//testing out git changes
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  
   // userCredsAccepted: boolean;
   // returnUrl: string;
   // myLocation: Location;
